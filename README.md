@@ -17,7 +17,7 @@ The website is built using Node.js and EJS, making it fast, efficient, and easy 
 <h2>Features</h2>
 
 <ul>
-  <li>Lookup Discord user IDs by username or discriminator</li>
+  <li>Lookup Discord infos by user id</li>
   <li>Retrieve Discord user avatars</li>
   <li>View other relevant information about Discord users</li>
   <li>Fast and efficient</li>
@@ -38,13 +38,27 @@ npm install node-fetch
 npm install ejs
 </code></pre>
 
+<p>Before starting the server, you need to set up your Discord bot token in the `.env` file. To do this, create a new file called `.env` in the root directory of the project, and add the following line:</p>
+
+<pre><code>TOKEN=your_bot_token_here</code></pre>
+
+<p>Replace `your_bot_token_here` with your actual Discord bot token. If you don't have a bot token yet, you can create one by following the instructions in the <a href="https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot">Discord.js guide</a>.</p>
+
+<p>By default, the server will listen on port 3000. If you want to change the port number, you can set the `PORT` environment variable in the `.env` file. For example:</p>
+
+<pre><code>PORT=8080</code></pre>
+
+<p>This will start the server on port 8080 instead of the default port 3000.</p>
+
 <br>
 
 <h2>Usage</h2>
 
-<p>Once you have installed the dependencies, you can start the server using the following command:</p>
+<p>Once you have installed the dependencies and set up the `.env` file, you can start the server using the following command:</p>
 
 <pre><code>npm start
+// or
+node main.js
 </code></pre>
 
 <p>This will start the server on <code>http://localhost:3000/</code>. You can then visit the website in your browser to start using DiscordLookup.</p>
