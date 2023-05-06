@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="theme-color" content="#7289DA">
+    <meta name="author" content="Discord.ID">
+    <meta name="description" content="Lookup a Discord User or Bot ID.">
+    <meta name="keywords" content="discord.id, discord loopkup">
+    <meta property="og:title" content="Discord Lookup">
+    <meta property="og:url" content="https://discord.id">
+    <meta property="og:description" content="Lookup a Discord User or Bot ID.">
+    <meta property="og:image" content="img/logo.png">
+    <title>Discord Lookup</title>
+    <meta property="og:site_name" content="Discord.ID">
+    <meta name="twitter:title" content="Discord Lookup">
+    <meta name="twitter:image" content="img/logo.png">
+    <meta name="twitter:url" content="https://discord.id">
+    <meta name="twitter:card" content="Lookup a Discord User or Bot ID.">
+    <link rel="shortcut icon" type="image/png" href="img/logo.png">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link href="css/app.ac92fb66.css" rel="preload" as="style">
+    <link href="css/chunk-vendors.05dc3758.css" rel="preload" as="style">
+    <link href="css/chunk-vendors.05dc3758.css" rel="stylesheet">
+    <link href="css/app.ac92fb66.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but dcid doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app">
+        <header class="header">
+          <div id="nav">
+            <span class="centertxt">
+              <span class="fas fa-search"></span> Discord Lookup </span>
+          </div>
+        </header>
+        <div class="fpix">
+          <% if (title === "404"){%>
+            <div class="row justify-content-center"><h2>404: Not found.</h2></div>
+            <div class="row justify-content-center" style="margin-top: 2rem;"><a href="https://discord.id"><button class="btn btn-primary">Go to Homepage</button></a></div>
+          <%} else {%>
+            <div class="container">
+              <div class="row" style="justify-content: center;">
+                <div class="col-md-4">
+                  <label for="inputid">User ID / Any ID: <a href="https://wiki.discord.id" target="_blank">
+                      <span class="badge mdage badge-primary">Learn more</span>
+                    </a>
+                    <a href="https://github.com/nerrixDE/discordid-wiki/discussions" target="_blank" style="display: none !important;">
+                      <span class="badge mdage badge-info" style="display: none !important;">Visit Forum</span>
+                    </a>
+                  </label>
+                  <div class="lbc"></div>
+                  <input maxlength="22" type="text" id="inputid" class="form-control blackinput" <% if (found) { %> value="<%= user.id %>" <% } %> autocomplete="off" autofocus="autofocus">
+                  <br>
+                  <div id="tbzh" style="float: right;">
+                    <button disabled="disabled" class="form-control btn btn-blue smallbtn smallerinp pull-right">Lookup <div class="ball-pulse smallBall" style="display: none;">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </button>
+                  </div>
+                  <!---->
+                </div>
+              </div>
+            <%}%>
+            <!---->
+            <% if (found) {%>
+              <div id="user" class="row" style="justify-content: center; margin-top: 4rem;">
+                  <div class="col-md-2 withdarker picbx" style="text-align: center;">
+                    <a href="<%= user.avatar.link %>?size=1024" target="_blank">
+                      <img src="<%= user.avatar.link %>?size=1024" class="avyimg">
+                    </a>
+                  </div>
+                  <div class="col-md-4 withdarker">
+                    <% if (user.banner.id) {%>
+                      <a href="https://cdn.discordapp.com/banners/<%= user.id %>/<%= user.banner.id %>?size=1024" target="_blank">
+                        <img src="https://cdn.discordapp.com/banners/<%= user.id %>/<%= user.banner.id %>?size=1024" alt="Banner" style="margin-bottom: 2rem; width: 100%; border-radius: 5px;">
+                      </a>
+                    <% } %>
+                    <!---->
+                    <p>
+                      <span class="fas fa-user"></span>
+                      <strong>User ID</strong>: <span class="resulth">
+                        <%= user.id %>
+                      </span>
+                    </p>
+                    <p>
+                      <span class="fas fa-hashtag"></span>
+                      <strong>Username</strong>: <span class="resulth" style="color: rgb(228, 154, 255);">
+                        <span>
+                          <%= user.tag %>
+                        </span>
+                        <% if (user.bot) {%>
+                          <img src="img/flags/bot.png" style="vertical-align: text-top; height: 1.2rem; margin-left: 0.2rem; margin-bottom: 0.1rem;">
+                        <% } %>
+                        <!---->
+                      </span>
+                    </p>
+                    <p>
+                      <span class="fas fa-tags"></span>
+                      <strong>Badges</strong>:
+                      <!---->
+                      <span>
+                        <% user.badges.forEach(function(badge) { %>
+                          <img src="img/badges/<%= badge %>.png" id="bxo<%= badge %>" class="badgepng">
+                        <% }); %>
+                        <!---->
+                      </span>
+                    </p>
+                    <p>
+                      <span class="fas fa-asterisk"></span>
+                      <strong>Created</strong>: <span class="resulth" style="color: rgb(129, 200, 134);">
+                      <%= user.created_at %>
+                      </span>
+                    </p>
+                    <% if (user.banner.color) {%>
+                      <p>
+                        <span class="fas fa-palette"></span>
+                        <strong>Banner Color</strong>:
+                        <span class="resulth" id="bannerhover">
+                          <span hidden class="colortag" style="box-shadow: <%= user.banner.color %> 0px 0px 2px; color: <%= user.banner.color %>;">
+                            <%= user.banner.color %>
+                          </span>
+                          <!---->
+                          <span class="colortag2" style="border-radius: 2px; vertical-align: sub; display: inline-block; height: 1.1rem; width: 4.5rem; background-color: <%= user.banner.color %>;"></span>
+                        </span>
+                      </p>
+                    <% } %>
+                  </div>
+              </div>
+              <!---->
+              <div id="donatebox" class="row" style="justify-content: center; margin-top: 4rem;">
+                <div class="col-md-4">
+                  <p style="font-size: 2rem;">
+                    <span style="font-weight: bold; color: rgb(255, 60, 60);">YOUR</span>
+                    <span style="color: white;"> LOOKUP</span>
+                    <span style="color: rgb(255, 60, 60); font-weight: bold;">.</span>
+                  </p>
+                  <p>
+                    <span class="fas fa-heart" style="color: rgb(114, 137, 218);"></span> Enjoying discord.id? Donate to keep this up ad-free &amp; get a sweet vanity link.
+                  </p>
+                  <a href="https://discord.id/donate">
+                    <button class="btn" style="background-color: rgba(84, 116, 243, 0.71); color: white;">Check this out</button>
+                  </a>
+                </div>
+              </div>
+            <% } else if (found == false && typeof user != 'undefined') {%>
+              <div class="row" style="justify-content: center; margin-top: 4rem;">
+                <div class="col-md-4 withdarker">
+                  <!---->
+                  <p>
+                    <span class="fas fa-user"></span>
+                    <strong> ID</strong>:
+                    <span class="resulth">
+                      <%= user.id %>
+                    </span>
+                  </p><!----><!---->
+                  <p>
+                    <span class="fas fa-asterisk"></span>
+                    <strong>Created</strong>:
+                    <span class="resulth" style="color: rgb(129, 200, 134);">
+                      <%= user.created_at %>
+                    </span>
+                  </p>
+                  <!---->
+                </div>
+              </div>
+
+              <div id="donatebox" class="row" style="justify-content: center; margin-top: 4rem;">
+                <div class="col-md-4">
+                  <p style="font-size: 2rem;">
+                    <span style="font-weight: bold; color: rgb(255, 60, 60);">YOUR</span>
+                    <span style="color: white;"> LOOKUP</span>
+                    <span style="color: rgb(255, 60, 60); font-weight: bold;">.</span>
+                  </p>
+                  <p>
+                    <span class="fas fa-heart" style="color: rgb(114, 137, 218);"></span> Enjoying discord.id? Donate to keep this up ad-free &amp; get a sweet vanity link.
+                  </p>
+                  <a href="https://discord.id/donate">
+                    <button class="btn" style="background-color: rgba(84, 116, 243, 0.71); color: white;">Check this out</button>
+                  </a>
+                </div>
+              </div>
+            <% } %>
+            <!---->
+          </div>
+        </div>
+        <div class="footerarea">
+          <p id="footer" class="footertxt0"> © <a href="https://discord.gg/perdition-development-847892794710425631" target="_blank" style="color: rgb(145, 214, 255) !important;">KonaN</a> | <a href="https://wiki.discord.id" target="_blank">About, FAQ, Wiki</a> | Not affiliated with Discord, Inc. | <a target="_blank" href="/donate" style="color: rgb(247, 209, 62) !important;">Donate</a> and get a Vanity Invite </p>
+        </div>
+    </div>
+    <script>
+        $('input').on('input', function() {
+            if ($(this).val().length >= 18) {
+              $('button').removeAttr('disabled');
+            } else {
+              $('button').attr('disabled', true);
+            }
+        });
+
+        $('button').click(function() {
+            if ($(this).attr('disabled') == 'disabled') {
+                return;
+            }
+            $(this).attr('disabled', 'disabled');
+            $('.smallBall').show();
+            $.ajax({
+                url: 'http://localhost:3000/fetch/user/' + $('#inputid').val(),
+                type: 'POST',
+                success: function(data) {
+                  if (data.error) {
+                    alert(data.error);
+                    $('button').removeAttr('disabled');
+                    $('.smallBall').hide();
+                    return;
+                  }
+                  $('body').html(data);
+                },
+                error: function() {
+                  alert('An error occured. Please try again later.');
+                  $('button').removeAttr('disabled');
+                  $('.smallBall').hide();
+                }
+            });
+        });
+
+        $(document).ready(function() {
+          $('.container').fadeIn(1000);
+        });
+
+        $('#bannerhover span').hover(
+          // Mouse enter handler
+          function() {
+            $('.colortag').removeAttr('hidden')
+            $('.colortag2').attr('hidden', true)
+          },
+          // Mouse leave handler
+          function() {
+            $('.colortag').attr('hidden', true)
+            $('.colortag2').removeAttr('hidden')
+          }
+        );
+    </script>
+  </body>
+</html>
