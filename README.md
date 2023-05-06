@@ -6,6 +6,8 @@ In addition to the ID lookup feature, DiscordLookup also has a bot add feature. 
 
 The website is built using Node.js and EJS, making it fast, efficient, and easy to use.
 
+
+<img src="https://cdn.discordapp.com/attachments/1047266671372554351/1104516615392989295/image.png" alt="preview">
 <br>
 
 <a href="https://github.com/KKonaNN/discordlookup">
