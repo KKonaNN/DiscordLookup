@@ -36,6 +36,7 @@ cd discordlookup
 npm install express
 npm install node-fetch
 npm install ejs
+npm install dotenv
 </code></pre>
 
 <p>Before starting the server, you need to set up your Discord bot token in the `.env` file. To do this, create a new file called `.env` in the root directory of the project, and add the following line:</p>
@@ -75,4 +76,4 @@ node main.js
 
 <h2>License</h2>
 
-<p>DiscordLookup is licensed under the MIT License. See <a href="https://github.com/your-username/discordlookup/blob/main/LICENSE">LICENSE</a> for more information.</p>
+<p>DiscordLookup is just a fanwork of the original https://discord.id</p>
