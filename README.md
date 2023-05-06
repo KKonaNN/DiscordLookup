@@ -31,9 +31,11 @@ The website is built using Node.js and EJS, making it fast, efficient, and easy 
 
 <p>To use DiscordLookup, you need to have Node.js and npm installed on your system. You can then clone this repository and install the required dependencies using npm. Here's how:</p>
 
-<pre><code>git clone https://github.com/your-username/discordlookup.git
+<pre><code>git clone https://github.com/KKonaNN/discordlookup.git
 cd discordlookup
-npm install
+npm install express
+npm install node-fetch
+npm install ejs
 </code></pre>
 
 <br>
