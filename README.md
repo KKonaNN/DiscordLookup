@@ -59,8 +59,7 @@ npm install dotenv
 
 <p>Once you have installed the dependencies and set up the `.env` file, you can start the server using the following command:</p>
 
-<pre><code>
-node main.js
+<pre><code>node main.js
 </code></pre>
 
 <p>This will start the server on <code>http://localhost:3000/</code>. You can then visit the website in your browser to start using DiscordLookup.</p>
