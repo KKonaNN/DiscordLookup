@@ -59,8 +59,7 @@ npm install dotenv
 
 <p>Once you have installed the dependencies and set up the `.env` file, you can start the server using the following command:</p>
 
-<pre><code>npm start
-// or
+<pre><code>
 node main.js
 </code></pre>
 
