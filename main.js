@@ -24,58 +24,58 @@ app.post('/fetch/user/:id', async (req, res) => {
     let id = req.params.id;
 
     try {
-        fetch(`https://canary.discord.com/api/v10/users/${id}`, {
+        const fRes = await fetch(`https://canary.discord.com/api/v10/users/${id}`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bot ${process.env.TOKEN}`,
             },
-        }).then((res) => res.json()).then((json) => {
+        })
+        const json = await fRes.json()
 
-            if (json.id == undefined) {
-                let output = {
-                    id: id,
-                    created_at: snowflakeToUtc(id),
-                }
-                return res.status(200).render('index.ejs', { user: output, found: false });
-            }
-
-            let publicFlags = [];
-            USER_FLAGS.forEach((flag) => {
-                if (json.public_flags & flag.bitwise) {
-                    publicFlags.push(flag.id)
-                };
-            });
-
-            let avatarLink = null;
-            if (json.avatar) {
-                avatarLink = `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`;
-            }
-
-            let bannerLink = null;
-            if (json.banner) {
-                bannerLink = `https://cdn.discordapp.com/banners/${json.id}/${json.banner}`;
-            }
-
+        if (json.id == undefined) {
             let output = {
-                id: json.id,
-                created_at: snowflakeToUtc(json.id),
-                tag: `${json.username}#${json.discriminator}`,
-                badges: publicFlags,
-                avatar: {
-                    id: json.avatar,
-                    link: avatarLink,
-                    is_animated: json.avatar != null && json.avatar.startsWith("a_") ? true : false,
-                },
-                banner: {
-                    id: json.banner,
-                    link: bannerLink,
-                    is_animated: json.banner != null && json.banner.startsWith("a_") ? true : false,
-                    color: json.banner_color,
-                },
-                bot: json.bot,
+                id: id,
+                created_at: snowflakeToUtc(id),
             }
-            res.status(200).render('index.ejs', { title: `${json.username}#${json.discriminator}`, user: output, found: true });
+            return res.status(200).render('index.ejs', { user: output, found: false });
+        }
+
+        let publicFlags = [];
+        USER_FLAGS.forEach((flag) => {
+            if (json.public_flags & flag.bitwise) {
+                publicFlags.push(flag.id)
+            };
         });
+
+        let avatarLink = null;
+        if (json.avatar) {
+            avatarLink = `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`;
+        }
+
+        let bannerLink = null;
+        if (json.banner) {
+            bannerLink = `https://cdn.discordapp.com/banners/${json.id}/${json.banner}`;
+        }
+
+        let output = {
+            id: json.id,
+            created_at: snowflakeToUtc(json.id),
+            tag: `${json.username}#${json.discriminator}`,
+            badges: publicFlags,
+            avatar: {
+                id: json.avatar,
+                link: avatarLink,
+                is_animated: json.avatar != null && json.avatar.startsWith("a_") ? true : false,
+            },
+            banner: {
+                id: json.banner,
+                link: bannerLink,
+                is_animated: json.banner != null && json.banner.startsWith("a_") ? true : false,
+                color: json.banner_color,
+            },
+            bot: json.bot,
+        }
+        res.status(200).render('index.ejs', { title: `${json.username}#${json.discriminator}`, user: output, found: true });
     } catch (err) {
         console.log(err);
         res.status(404).render('index.ejs', { found : false, title: '404' });
